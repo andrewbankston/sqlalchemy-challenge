@@ -98,6 +98,8 @@ def start(start):
     avg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date >= start).all()
     high = session.query(func.max(Measurement.tobs)).filter(Measurement.date >= start).all()
 
+    session.close()
+
     weather_list.append(low)
     weather_list.append(avg)
     weather_list.append(high)
@@ -113,6 +115,8 @@ def start_end(start, end):
     low = session.query(func.min(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     avg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     high = session.query(func.max(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+
+    session.close()
 
     weather_list.append(low)
     weather_list.append(avg)
